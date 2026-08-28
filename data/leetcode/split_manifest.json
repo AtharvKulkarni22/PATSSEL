@@ -1,0 +1,48 @@
+{
+  "seed": 1012,
+  "split_method": "For each 200-row source bucket, shuffle row indices with numpy RandomState(seed + int(md5(source_filename)[:8], 16)); first 100 rows are dev and last 100 rows are test. This preserves the instance-level split used in the experiments.",
+  "buckets": [
+    {
+      "source_filename": "subset_200_split_1-25_dev.tsv",
+      "public_filename": "q1_0_25.tsv",
+      "source_rows": 200,
+      "dev_rows": 100,
+      "test_rows": 100,
+      "dev_sha256": "0f015634c968f6aedfaa6cda61df0d08037a2acf2e9a66f3b9d62dc6e90d42d2",
+      "test_sha256": "9180e04cc1d2eae13ba09949b2d98e4c2fc4dbb9e7d472bbac34600ad99cd2d8"
+    },
+    {
+      "source_filename": "subset_200_split_25-50_dev.tsv",
+      "public_filename": "q2_25_50.tsv",
+      "source_rows": 200,
+      "dev_rows": 100,
+      "test_rows": 100,
+      "dev_sha256": "cd49ad1544b5608440835136aa277df0048d7d115a7bd9c47f64663b5e23d631",
+      "test_sha256": "3194a3924a013fee7abb26c015f71f1d14168896a5678dbc3870e2e68d2b2083"
+    },
+    {
+      "source_filename": "subset_200_split_50-75_dev.tsv",
+      "public_filename": "q3_50_75.tsv",
+      "source_rows": 200,
+      "dev_rows": 100,
+      "test_rows": 100,
+      "dev_sha256": "11cc28217827d046792c7aba13e462404d2dbe01eca5d677dfb230ec04ac94c7",
+      "test_sha256": "2dc4351f097259b136bbb2fca3f32c1479257e90c43da78c576c4d2191297a2b"
+    },
+    {
+      "source_filename": "subset_200_split_75-99_dev.tsv",
+      "public_filename": "q4_75_99.tsv",
+      "source_rows": 200,
+      "dev_rows": 100,
+      "test_rows": 100,
+      "dev_sha256": "f289708065705ef66c2a40f1948ff5c37152e41f01c43a6d2d16f51f67a91655",
+      "test_sha256": "73e2d518e32025077adcd4f99f373fc7d78e2f094925aa96295edfb9485f7a07"
+    }
+  ],
+  "num_unique_eval_task_ids": 459,
+  "dev_rows_total": 400,
+  "test_rows_total": 400,
+  "split_unit": "row/repair instance",
+  "shared_task_ids_between_dev_and_test": 128,
+  "note": "The released files preserve the exact historical row-level split used for the paper. Rows are disjoint; task IDs can repeat across dev and test because a task may have multiple buggy-program instances."
+}

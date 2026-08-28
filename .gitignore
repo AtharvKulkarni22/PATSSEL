@@ -1,0 +1,8 @@
+outputs/
+checkpoints/
+wandb/
+*.log
+__pycache__/
+*.py[cod]
+.DS_Store
+.cache/

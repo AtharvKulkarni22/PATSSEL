@@ -1011,8 +1011,8 @@ def run_experiment(experiment: Experiment, args, rows: List[Dict[str, Any]], pro
             "single_generation", "best2_generation_oracle", "best2_generation_verifier",
             "routing_oracle", "routing_verifier"
         )
-        best2_debug = experiment.kind in ("best2_debug_oracle", "best2_debug_verifier", "routing_oracle", "routing_verifier")
-        best2_gen = experiment.kind in ("best2_generation_oracle", "best2_generation_verifier", "routing_oracle", "routing_verifier")
+        best2_debug = experiment.kind in ("best2_debug_oracle", "best2_debug_verifier")
+        best2_gen = experiment.kind in ("best2_generation_oracle", "best2_generation_verifier")
 
         debug_outs: List[Tuple[str, int]] = []
         gen_outs: List[Tuple[str, int]] = []
@@ -1204,7 +1204,6 @@ def run_experiment(experiment: Experiment, args, rows: List[Dict[str, Any]], pro
                     )
 
             elif experiment.kind == "routing_oracle":
-                # Gold PATSSEL: oracle-route between best-of-2 debug and best-of-2 regen.
                 debug_evals_official = [
                     evaluate_code_on_tests(code, item["official_tests"], args.timeout, item["target_idx"], keep_details=False)
                     for code in debug_codes
@@ -1245,7 +1244,7 @@ def run_experiment(experiment: Experiment, args, rows: List[Dict[str, Any]], pro
                     "generation": gen_codes,
                 }
                 note = (
-                    "oracle_routing_best2;"
+                    "oracle_routing_best1_each;"
                     + summarize_candidate_evals("debug", debug_evals_official, best_debug_idx)
                     + ";"
                     + summarize_candidate_evals("gen", gen_evals_official, best_gen_idx)
@@ -1253,7 +1252,6 @@ def run_experiment(experiment: Experiment, args, rows: List[Dict[str, Any]], pro
                 )
 
             elif experiment.kind == "routing_verifier":
-                # Base PATSSEL: verifier-route between best-of-2 debug and best-of-2 regen.
                 vinfo = verifier_maps.get(experiment.verifier_source or "", {}).get(item["question_id"], {})
                 tests = vinfo.get("verifier_tests", []) or []
 
@@ -1325,7 +1323,7 @@ def run_experiment(experiment: Experiment, args, rows: List[Dict[str, Any]], pro
                         "generation": gen_codes,
                     }
                     note = (
-                        "verifier_routing_best2;"
+                        "verifier_routing_best1_each;"
                         + summarize_candidate_evals("verifier_debug", debug_evals_verifier, best_debug_idx)
                         + ";"
                         + summarize_candidate_evals("verifier_gen", gen_evals_verifier, best_gen_idx)

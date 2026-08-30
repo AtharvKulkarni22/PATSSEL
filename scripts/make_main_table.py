@@ -47,10 +47,10 @@ def lcb_metrics(root: Path):
     tmp = {}
     for r in rows:
         if r["mode"] != "non_backtracking": continue
-        tmp.setdefault(r["experiment"], {})[bucket_name[r["bucket"]]] = float(r["problem_pass_rate_pct"])
+        tmp.setdefault(r["experiment"], {})[bucket_name[r["bucket"]]] = float(r["overall_test_accuracy_pct"])
     with (root / "all_selected_experiments_summary.tsv").open(newline="") as f:
         overall = list(csv.DictReader(f, delimiter="\t"))
-    avgs = {r["experiment"]: float(r["problem_pass_rate_pct"]) for r in overall if r["mode"] == "non_backtracking"}
+    avgs = {r["experiment"]: float(r["overall_test_accuracy_pct"]) for r in overall if r["mode"] == "non_backtracking"}
     return {e: [tmp[e][q] for q in QCOLS] + [avgs[e]] for e in tmp}
 
 

@@ -1,8 +1,9 @@
 # PATSSEL
 
 Code for **Debug or Regenerate? Test-Guided Selection for LLM Code Repair**.
+Authors: Atharv Kulkarni, Archiki Prasad, Vivek Srikumar, Elias Stengel-Eskin, Hyunji Lee and Mohit Bansal
 
-In this paper we introduce PATSSEL. PATSSEL generates a regenerated candidate and a debugged candidate, evaluates them with verifier tests, and selects the candidate with the higher verifier-test pass rate. This repository contains the training and inference code used for the results in the main table.
+In this paper we introduce PATSSEL. PATSSEL generates a regenerated candidate and a debugged candidate, evaluates them with verifier tests, and selects the candidate with the higher verifier-test pass rate. This repository contains the training and inference code used for the recreating the results.
 
 ## Setup
 
@@ -13,8 +14,6 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-
-Unless overridden with `--seed`, the scripts use the paper seed `1012`.
 
 ## Models
 
